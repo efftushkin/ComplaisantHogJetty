@@ -5,7 +5,7 @@ public class Worker {
     private String firstName;
     private String lastName;
 
-    //Default constructor for deserialise from Object value with jackson
+    //Default constructor for deserialising from Object value with jackson
     public Worker() {
     }
 

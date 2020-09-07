@@ -3,7 +3,6 @@ package com.efftushkin.ComplaisantHogJetty.repository;
 import com.efftushkin.ComplaisantHogJetty.model.Worker;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
@@ -46,14 +45,9 @@ public class JsonWorkerRepository implements WorkerRepository {
 
         try (OutputStream outputStream = new FileOutputStream(PATH_TO_JSON_WORKERS)) {
             objectMapper.writeValue(outputStream, workerIdToWorker.values().toArray());
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @PostConstruct
@@ -68,12 +62,7 @@ public class JsonWorkerRepository implements WorkerRepository {
             for (Worker worker : workers) {
                 workerIdToWorker.put(worker.getId(), worker);
             }
-
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

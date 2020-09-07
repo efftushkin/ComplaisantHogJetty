@@ -1,7 +1,6 @@
 package com.efftushkin.ComplaisantHogJetty.repository;
 
 import com.efftushkin.ComplaisantHogJetty.model.Worker;
-import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
