@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,10 +16,6 @@ import java.util.stream.Collectors;
 public class JsonWorkerRepository implements WorkerRepository {
     private Map<String, Worker> workerIdToWorker = new HashMap<>();
     private String PATH_TO_JSON_WORKERS = "d:/_JavaProjects/IdeaProjects/ComplaisantHogJetty/src/main/resources/workers.json";
-
-    public JsonWorkerRepository() {
-        readFromFile();
-    }
 
     @Override
     public void save(Worker worker) {
@@ -59,6 +56,7 @@ public class JsonWorkerRepository implements WorkerRepository {
 
     }
 
+    @PostConstruct
     private void readFromFile() {
         ObjectMapper objectMapper = new ObjectMapper();
 
